@@ -1,5 +1,13 @@
 import unittest
-from source.main import query_selfdiscover
+
+import sys
+from os.path import abspath, dirname, realpath
+# autopep8: off
+PATH = realpath(abspath(__file__))
+sys.path.insert(0, dirname(dirname(PATH)))
+# autopep8: on
+
+from main.self_discover import query_selfdiscover
 
 class TestSelfDiscover(unittest.TestCase):
     def test_query_selfdiscover_1(self):
@@ -38,7 +46,7 @@ class TestSelfDiscover(unittest.TestCase):
         self.assertIn(expected_output, result)
     
     def test_query_googledeepmind_2(self):
-        task_example="Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?"))
+        task_example="Lisa has 10 apples. She gives 3 apples to her friend and then buys 5 more apples from the store. How many apples does Lisa have now?"
         expected_output = "we can determine that Lisa now has 12 apples"
         result = query_selfdiscover(task_example)
         self.assertIn(expected_output, result)
